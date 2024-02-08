@@ -1,6 +1,6 @@
 import { useState } from "react"
 
-export default function (onSearchValue){
+export default function ({onSearch}){
     
     const [value,setValue]=useState('')
     
@@ -10,11 +10,10 @@ export default function (onSearchValue){
                 type="text"
                 value={value}
                 onChange={(e)=>{setValue(e.target.value)}}
-             />
-             <button 
-                onClick={()=>{
-                    onSearchValue(value)
-                }}>search</button>
+            />
+            <button 
+                onClick={()=>{onSearch(value)}}
+            >search</button>
         </>
     )
 }

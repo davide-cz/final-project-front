@@ -11,7 +11,7 @@ export default function (){
             <NavLink to='/'>HomePage</NavLink>
             <NavLink to='/about'>About</NavLink>
             <SearchBar
-                onSearchValue={(searchValue)=>setSearchValue(searchValue)}
+                onSearch={(searchValue)=>{setSearchValue(searchValue)}}
                 //search value definisce il valore che andrà a definire
                 //queries di ricerca 
             />
