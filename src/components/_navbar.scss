@@ -2,11 +2,21 @@
     background-color: darkgray;
     padding: 1rem;
     display:flex;
+    justify-content: space-between;
     gap: 1rem;
+
     & > * {
-        color:rgb(255, 195, 121);
-        text-decoration: none;
-        font-weight: 700;
+        display:flex;
+        gap: 1rem;
         font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        
+        .link {
+            color:rgb(255, 195, 121);
+            text-decoration: none;
+            font-weight: 700;
+        }
+    }.searchbar{
+        width: 400px;
     }
+
 }

@@ -7,6 +7,7 @@ export default function ({onSearch}){
     return (
         <>
             <input 
+                className='searchbar'
                 type="text"
                 value={value}
                 onChange={(e)=>{setValue(e.target.value)}}
