@@ -1,18 +1,20 @@
 import axios from "axios";
-import { createContext, useState } from "react";
+import { createContext, useContext, useState } from "react";
 
-const {VITE_MONGO_URI} = import.meta.env;
+const {VITE_URI} = import.meta.env;
 
 const UserContext=createContext();
 
 export const UserProvider = ({children}) =>{
 
-    const [user,setUser]=useState(null);
+    const [user,setUser]=useState({
+       
+    });
 
     const [error,setError]=useState(null);
     const [loading,setLoading]=useState(false);
 
-    const signUp = async (email,password)=>{
+    const signUp = async (user_name,email,password)=>{
         if(loading)   return;
 //se sta caricando setto loading a true 
         setError(null);
@@ -20,12 +22,11 @@ export const UserProvider = ({children}) =>{
         try{
             //raccolgo user da email e password e con metodo axios-post alla route signUp
             //user diventa il value di data 
-            const body={email,password};
-            const {data:user}= await axios.post(`${VITE_MONGO_URI}/signup` , body);
+            const body={email,password,user_name};
+            const {data:user}= await axios.post(`${VITE_URI}/musicians/signup` , body);
             setUser(user)
         }catch(error){
             console.error(error);
-            setError(error.response.user);
         }finally{
             setLoading(false);
         }
@@ -40,7 +41,7 @@ export const UserProvider = ({children}) =>{
 
         try{
             const body = {email, password};
-            const { data: user } = await axios.post(`${VITE_MONGO_URI}/signup` , body);
+            const { data: user } = await axios.post(`${VITE_URI}/login` , body);
             setUser(user);
         }catch(error){
             console.error(error);

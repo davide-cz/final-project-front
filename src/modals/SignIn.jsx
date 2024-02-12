@@ -1,8 +1,13 @@
 import { useEffect, useRef } from "react"
 import { useState } from "react"
+import { useUser } from "../contexts/UserContext";
+
 
 export default function ({isOpen,setIsOpen}){
     
+
+
+    const { signUp, logIn, error, loading } = useUser();
     //setting finestra modale per iscrizione 
     const dialogRef=useRef()
 
@@ -15,36 +20,23 @@ export default function ({isOpen,setIsOpen}){
     },[isOpen])
 
     const [signInForm,setSignInForm]=useState({
-        first_name:'',
-        last_name:'',
-        userName:'',
-        email:'',
-        password:'',
-        birthDate:'',
-        instrument:'',
-        genre:'',
+        name:'dada',
+        email:'caca@daca.com',
+        password:'diomaledetA!'
+       /*  birthDate:'',
+        instrument:'', */
     })
-
-    
+   
+    const signUser=(e)=>{
+        e.preventDefault();
+        const {userName,password,email}=signInForm;
+            signUp(userName,email,password)
+    }
 
     return(
         <>
             <dialog ref={dialogRef}>
-                <form action="" onSubmit={e=>e.preventDefault()}>
-                    <label htmlFor="">
-                        <p>First Name</p>
-                        <input 
-                            type="text"
-                            value={signInForm.first_name}
-                            onChange={e=>setSignInForm(curr=>({...curr, first_name:e.target.value}))} />
-                    </label>
-                    <label htmlFor="">
-                        <p>Last Name</p>
-                        <input 
-                            type="text"
-                            value={signInForm.last_name}
-                            onChange={e=>setSignInForm(curr=>({...curr, last_name:e.target.value}))} />
-                    </label>
+                <form onSubmit={signUser}>
                     <label htmlFor="">
                         <p>UserName</p>
                         <input 
@@ -66,20 +58,7 @@ export default function ({isOpen,setIsOpen}){
                             value={signInForm.password}
                             onChange={e=>setSignInForm(curr=>({...curr, password:e.target.value}))} />
                     </label>
-                    <label htmlFor="">
-                        <p>BirthDate</p>
-                        <input 
-                            type="date"
-                            value={signInForm.birthDate}
-                            onChange={e=>setSignInForm(curr=>({...curr, birthDate:e.target.value}))} />
-                    </label>
-                    <label htmlFor="">
-                        <p>genre</p>
-                        <input 
-                            type="text"
-                            value={signInForm.genre}
-                            onChange={e=>setSignInForm(curr=>({...curr, genre:e.target.value}))}/>
-                    </label>
+                   {/*inserire form per data di nascita*/}     
                     {/*inserire option select con gli strumenti*/}
                     <button>submit</button>
                 </form>
