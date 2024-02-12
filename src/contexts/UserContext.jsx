@@ -1,5 +1,6 @@
 import axios from "axios";
 import { createContext, useContext, useState } from "react";
+import useStorage from "../hooks/useStorage";
 
 const {VITE_URI} = import.meta.env;
 
@@ -7,9 +8,7 @@ const UserContext=createContext();
 
 export const UserProvider = ({children}) =>{
 
-    const [user,setUser]=useState({
-       
-    });
+    const [user,setUser]=useStorage(null);
 
     const [error,setError]=useState(null);
     const [loading,setLoading]=useState(false);
@@ -23,7 +22,7 @@ export const UserProvider = ({children}) =>{
             //raccolgo user da email e password e con metodo axios-post alla route signUp
             //user diventa il value di data 
             const body={email,password,user_name};
-            const {data:user}= await axios.post(`${VITE_URI}/musicians/signup` , body);
+            const {data:user}= await axios.post(`${VITE_URI}/user/signup` , body);
             setUser(user)
         }catch(error){
             console.error(error);
@@ -41,7 +40,7 @@ export const UserProvider = ({children}) =>{
 
         try{
             const body = {email, password};
-            const { data: user } = await axios.post(`${VITE_URI}/login` , body);
+            const { data: user } = await axios.post(`${VITE_URI}/user/login` , body);
             setUser(user);
         }catch(error){
             console.error(error);

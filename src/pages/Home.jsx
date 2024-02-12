@@ -12,7 +12,7 @@ export default function (){
             <p>
                 Hello, this is an app that allows you to collaborate with pro and amateur musicians for your own music projects
             </p>
-            <button onClick={()=>setIsOpen(true)}>Let's start</button>
+            <button onClick={()=>setIsOpen(true)}>Log/Sign</button>
             <SignIn
             isOpen={isOpen}
             setIsOpen={c=>setIsOpen(c)}/>

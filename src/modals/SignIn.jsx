@@ -20,52 +20,95 @@ export default function ({isOpen,setIsOpen}){
     },[isOpen])
 
     const [signInForm,setSignInForm]=useState({
-        name:'dada',
-        email:'caca@daca.com',
-        password:'diomaledetA!'
-       /*  birthDate:'',
-        instrument:'', */
+        user_name:'',
+        email:'',
+        password:''
     })
+
+    const [signInLayout,setSignInLayout]=useState(true)
    
     const signUser=(e)=>{
         e.preventDefault();
-        const {userName,password,email}=signInForm;
-            signUp(userName,email,password)
+        const {user_name,password,email}=signInForm;
+        signUp(user_name,email,password)
+    }
+    const logUser=(e)=>{
+        e.preventDefault();
+        const {password,email}=signInForm;
+        logIn(email,password)
+
     }
 
     return(
         <>
+        
             <dialog ref={dialogRef}>
-                <form onSubmit={signUser}>
-                    <label htmlFor="">
-                        <p>UserName</p>
-                        <input 
-                            type="text"
-                            value={signInForm.userName}
-                            onChange={e=>setSignInForm(curr=>({...curr, userName:e.target.value}))} />
-                    </label>
-                    <label htmlFor="">
-                        <p>Email</p>
-                        <input 
-                            type="email"
-                            value={signInForm.email}
-                            onChange={e=>setSignInForm(curr=>({...curr, email:e.target.value}))} />
-                    </label>
-                    <label htmlFor="">
-                        <p>Password</p>
-                        <input 
-                            type="password"
-                            value={signInForm.password}
-                            onChange={e=>setSignInForm(curr=>({...curr, password:e.target.value}))} />
-                    </label>
-                   {/*inserire form per data di nascita*/}     
-                    {/*inserire option select con gli strumenti*/}
-                    <button>submit</button>
-                </form>
-                <button 
-                    onClick={()=>{
-                        setIsOpen(false)
-                }}>close</button>
+                <div>
+                    {signInLayout &&
+                    <div className="sign-form">
+                        <form onSubmit={signUser}>
+                            <label htmlFor="">
+                                <p>UserName</p>
+                                <input 
+                                    type="text"
+                                    value={signInForm.user_name}
+                                    onChange={e=>setSignInForm(curr=>({...curr, user_name:e.target.value}))} />
+                            </label>
+                            <label htmlFor="">
+                                <p>Email</p>
+                                <input 
+                                    type="email"
+                                    value={signInForm.email}
+                                    onChange={e=>setSignInForm(curr=>({...curr, email:e.target.value}))} />
+                            </label>
+                            <label htmlFor="">
+                                <p>Password</p>
+                                <input 
+                                    type="password"
+                                    value={signInForm.password}
+                                    onChange={e=>setSignInForm(curr=>({...curr, password:e.target.value}))} />
+                            </label>
+                            <button>submit</button>
+                        </form>
+                        <button 
+                            onClick={()=>{
+                                setIsOpen(false)
+                        }}>close</button>
+                        <button onClick={()=>[
+                            setSignInLayout(false)
+                        ]}>
+                            Already Signed?
+                        </button>
+                    </div>
+                    }
+                    {!signInLayout &&
+                    <div className="login">
+                    <form onSubmit={logUser}>
+                            <label htmlFor="">
+                                <p>Email</p>
+                                <input 
+                                    type="email"
+                                    value={signInForm.email}
+                                    onChange={e=>setSignInForm(curr=>({...curr, email:e.target.value}))} />
+                            </label>
+                            <label htmlFor="">
+                                <p>Password</p>
+                                <input 
+                                    type="password"
+                                    value={signInForm.password}
+                                    onChange={e=>setSignInForm(curr=>({...curr, password:e.target.value}))} />
+                            </label>
+
+                            <button>submit</button>
+                            <button onClick={()=>[
+                                setSignInLayout(true)
+                                ]}>
+                                    Not subscribed?
+                        </button>
+                        </form>
+                    </div>
+                 }
+                </div>
             </dialog>
         </>
     )

@@ -1,9 +1,12 @@
 import { NavLink } from "react-router-dom";
 import SearchBar from "./SearchBar";
 import { useState } from "react";
+import { useUser } from "../contexts/UserContext";
 import SignIn from "../modals/SignIn";
 
 export default function (){
+
+    const {user} = useUser();
 
     const [searchValue,setSearchValue] =useState('')
 
@@ -16,7 +19,6 @@ export default function (){
             </div>
             <div >
                 <SearchBar
-                    
                     onSearch={(searchValue)=>{setSearchValue(searchValue)}}
                     //search value definisce il valore che andrà a definire
                     //queries di ricerca 
@@ -28,6 +30,9 @@ export default function (){
                     >SignUp
                 </button>
                 <button>LogIn</button>
+                {user && 
+                    <NavLink className='link' to='/user/:user_name'>{`${user.user_name}`}</NavLink>
+                }
             </div>
           
         </div>
