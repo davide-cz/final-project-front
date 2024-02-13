@@ -17,7 +17,7 @@ function App() {
       <NavBar/>
       <Routes>
         <Route path='/' element={<Home/>}/>
-        <Route path="/signup" element={!user ? <SignIn type='signup'/> : <Navigate to="/"/>}/>
+        <Route path="/signup" element={!user ? <SignIn/> : <Navigate to="/"/>}/>
         <Route path='/about' element={<About/>}/>
         <Route path='/user/:user_name' element={<User/>}/>
         <Route path='/musicians' element={<Musicians/>}/>
