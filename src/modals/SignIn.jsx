@@ -42,8 +42,14 @@ export default function ({isOpen,setIsOpen}){
     return(
         <>
         
-            <dialog ref={dialogRef}>
+            <dialog ref={dialogRef} className="dialog-modal">
                 <div>
+                    <div className="close-button">
+                        <button 
+                            onClick={()=>{
+                                setIsOpen(false)
+                        }}>close</button>
+                    </div>
                     {signInLayout &&
                     <div className="sign-form">
                         <form onSubmit={signUser}>
@@ -70,10 +76,7 @@ export default function ({isOpen,setIsOpen}){
                             </label>
                             <button>submit</button>
                         </form>
-                        <button 
-                            onClick={()=>{
-                                setIsOpen(false)
-                        }}>close</button>
+                        
                         <button onClick={()=>[
                             setSignInLayout(false)
                         ]}>
@@ -82,7 +85,7 @@ export default function ({isOpen,setIsOpen}){
                     </div>
                     }
                     {!signInLayout &&
-                    <div className="login">
+                    <div className="login-form">
                     <form onSubmit={logUser}>
                             <label htmlFor="">
                                 <p>Email</p>
