@@ -33,13 +33,13 @@ export default function ({isOpen,setIsOpen}){
     },[])
 
     const [musicianForm,setMusicianForm]=useState({
-        user_name:user,
+        user:user._id,
         instrument:'',
         genre:'',
         description:'',
     });
 
-    const addMusician=(obj,date)=>{
+    const addMusician=(obj)=>{
         axios.post(`${VITE_URI}/musicians`,obj)
         .then(()=>console.log('musician was added'))
         .catch((error)=>console.error(error))
@@ -57,7 +57,7 @@ export default function ({isOpen,setIsOpen}){
                 </div>
                 <h4>{user.user_name}</h4>
                 <select 
-                    value={musicianForm.instrument}
+                    value={musicianForm.instrument._id}
                     onChange={e=>setMusicianForm(curr=>({...curr, instrument:e.target.value}))}>
                     select an instrument
                     {instrumentsArray.map(((instr , i)=>{

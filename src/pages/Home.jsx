@@ -1,5 +1,6 @@
 import { useState } from "react";
 import SignIn from "../modals/SignIn";
+import MusicianCard from "../components/MusicianCard";
 
 export default function (){
 
@@ -18,6 +19,7 @@ export default function (){
                 isOpen={isOpen}
                 setIsOpen={c=>setIsOpen(c)}/>
             </div>
+            <MusicianCard/>
         </>
     )
 }
