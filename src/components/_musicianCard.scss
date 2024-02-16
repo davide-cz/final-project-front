@@ -1,10 +1,10 @@
 .musician-card{
-    width:350px ;
-    height: 300px;
-    border: 1px solid black;
+    width:300px ;
+    height: 250px;
     
     & .thumbnail *{
         border-radius: 1rem;
+        height: 175px;
         
     }
     & .profile-part{
@@ -16,5 +16,12 @@
             padding:0.5rem
     
         }
+        & .info-profile {
+            font-size: 16px;
+            font-stretch: condensed;
+            & h4{
+                font-size: 18px
+            }
+        } 
     }
 }

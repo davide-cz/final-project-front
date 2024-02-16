@@ -2,6 +2,7 @@ import { useEffect, useRef } from "react"
 import { useState } from "react"
 import { useUser } from "../contexts/UserContext";
 import axios from "axios";
+import { axiosOpts } from "../Ut/axiosOpt";
 
 
 
@@ -9,7 +10,7 @@ export default function ({isOpen,setIsOpen}){
     
     const {VITE_URI} = import.meta.env;
     
-    const {user} = useUser();
+    const {user , token} = useUser();
 
 
     const { signUp, logIn, error, loading } = useUser();
@@ -40,7 +41,7 @@ export default function ({isOpen,setIsOpen}){
     });
 
     const addMusician=(obj)=>{
-        axios.post(`${VITE_URI}/musicians`,obj)
+        axios.post(`${VITE_URI}/musicians`,obj, axiosOpts(token))
         .then(()=>console.log('musician was added'))
         .catch((error)=>console.error(error))
     };

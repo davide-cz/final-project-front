@@ -16,7 +16,7 @@ export default function (){
     //patch su ruolo utente, per pubblicare annuncio devi essere un musicista
     
     const becomeMusician=()=>{
-        axios.patch(`${VITE_URI}/user/:${user.user_name}`,{...user,role:'musician'})
+        axios.patch(`${VITE_URI}/user/${user.user_name}`,{...user,role:'musician'})
         .then(obj=>{console.log('role Changed')})
         .catch(error=>console.error(error))
     }

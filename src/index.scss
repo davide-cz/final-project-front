@@ -1,5 +1,7 @@
 @import './components/navbar.scss';
+@import './pages/home.scss';
 @import './components/musicianCard.scss';
+@import './modals/form.scss';
 
 
 * {
@@ -37,7 +39,12 @@ dialog{
     top: calc((100vh - $dialogHeight)/2);
     padding: .5rem;
     border-radius: 1rem;
-    
+  }
+  .musician-reel{
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
   }
     
  

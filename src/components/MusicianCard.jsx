@@ -10,8 +10,9 @@ export default function ({genre, description, name, instrument }){
                         <img src="https://source.unsplash.com/random/50x50?portrait" alt="" />
                     </figure>
                     <div className="info-profile">
-                        <h4>nome di uaglione</h4>
-                        <p>batterista</p>
+                        <h4 className="name-card">{name}</h4>
+                        <p>{instrument} - {genre}</p>
+                       
                     </div>
                 </div>
             </div>

@@ -6,15 +6,18 @@ export default function ({onSearch}){
     
     return (
         <>
-            <input 
-                className='searchbar'
-                type="text"
-                value={value}
-                onChange={(e)=>{setValue(e.target.value)}}
-            />
-            <button 
-                onClick={()=>{onSearch(value)}}
-            >search</button>
+            <div className='searchbar'> 
+                <input 
+                    className='inputbar'
+                    type="text"
+                    value={value}
+                    onChange={(e)=>{setValue(e.target.value)}}
+                />
+                <button 
+                    onClick={()=>{onSearch(value)}}
+                    className="search-button"
+                >search</button>
+            </div>
         </>
     )
 }

@@ -1,22 +1,53 @@
 .navbar {
-    background-color: darkgray;
+    background-color: rgb(224, 197, 255);
+    height: 60px;
     padding: 1rem;
     display:flex;
     justify-content: space-between;
     gap: 1rem;
 
-    & > * {
+    & .navlinks{
         display:flex;
         gap: 1rem;
+        align-items: center;
+    }
+    .logo{
+        height: 50px;
+        & > img{
+            border-radius: 0.5rem;
+       }
+    }
+
+
+    & > * {
         
         
         .link {
-            color:rgb(255, 195, 121);
+            color:rgb(0, 85, 19);
             text-decoration: none;
             font-weight: 700;
         }
-    }.searchbar{
-        width: 400px;
+    }
+    .searchbar{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.25rem;
+        
+        & .search-button{
+            height:25px;
+            padding: 0 0.5rem;
+        }
+        
+        & .inputbar{
+            width: 400px;
+            height: 30px;
+            padding: 0 0.5rem;
+            
+        }
     }
 
+}
+img{
+    max-height: 100%;
 }

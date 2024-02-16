@@ -9,17 +9,23 @@ export default function (){
 
     return (
         <>
-            <h3>This is the Homepage</h3>
-            <p>
-                Hello, this is an app that allows you to collaborate with pro and amateur musicians for your own music projects
-            </p>
-            <button onClick={()=>setIsOpen(true)}>Log/Sign</button>
+            <div className="jumbo-wrapper">
+                <div className="jumbo">
+                    <h3>Welcome to JamMee</h3>
+                    <h4>the greatest musicians's community of pizzo calabro</h4>
+                    <p>
+                        request performances made by amateur and pro musician
+                        from all over the neighborhood 
+                    </p>
+                    <p>Join now to see what the neighborhood has to offer!</p>
+                    <button onClick={()=>setIsOpen(true)}>Log/Sign</button>
+                </div>
+            </div>
             <div className="modal-wrapper">
                 <SignIn
                 isOpen={isOpen}
                 setIsOpen={c=>setIsOpen(c)}/>
             </div>
-            <MusicianCard/>
         </>
     )
 }

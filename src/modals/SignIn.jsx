@@ -52,6 +52,7 @@ export default function ({isOpen,setIsOpen}){
                     </div>
                     {signInLayout &&
                     <div className="sign-form">
+                        <h2 className="login-title">SignUp</h2>
                         <form onSubmit={signUser}>
                             <label htmlFor="">
                                 <p>UserName</p>
@@ -75,7 +76,7 @@ export default function ({isOpen,setIsOpen}){
                                     onChange={e=>setSignInForm(curr=>({...curr, password:e.target.value}))} />
                             </label>
                             <button onClick={()=>{
-                                user && setIsOpen(false)
+                                
                             }}>submit</button>
                         </form>
                         
@@ -88,6 +89,7 @@ export default function ({isOpen,setIsOpen}){
                     }
                     {!signInLayout &&
                     <div className="login-form">
+                    <h2 className="login-title">LogIn</h2>
                     <form onSubmit={logUser}>
                             <label htmlFor="">
                                 <p>Email</p>

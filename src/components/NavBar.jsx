@@ -15,8 +15,12 @@ export default function (){
 
     return(
         <div className="navbar">
-            <div>
-                <NavLink className='link' to='/'>HomePage</NavLink>
+            <div className="navlinks">
+                <NavLink className='link' to='/'>
+                    <figure className="logo">
+                        <img src="../public/logo.png" alt="" />
+                    </figure>
+                </NavLink>
                 <NavLink className='link' to='/about'>About</NavLink>
                 <NavLink className='link' to='/Musicians'>Musicians</NavLink>
             </div>

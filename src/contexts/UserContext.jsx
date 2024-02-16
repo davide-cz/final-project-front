@@ -8,7 +8,7 @@ const UserContext=createContext();
 
 export const UserProvider = ({children}) =>{
 
-    const [user,setUser]=useStorage(null);
+    const [data,setData]=useStorage(null);
 
     const [error,setError]=useState(null);
     const [loading,setLoading]=useState(false);
@@ -22,8 +22,9 @@ export const UserProvider = ({children}) =>{
             //raccolgo user da email e password e con metodo axios-post alla route signUp
             //user diventa il value di data 
             const body={email,password,user_name};
-            const {data:user}= await axios.post(`${VITE_URI}/user/signup` , body);
-            setUser(user)
+            const {data}= await axios.post(`${VITE_URI}/user/signup` , body);
+            setData(data)
+            console.log(data)
         }catch(error){
             console.error(error);
         }finally{
@@ -40,8 +41,8 @@ export const UserProvider = ({children}) =>{
 
         try{
             const body = {email, password};
-            const { data: user } = await axios.post(`${VITE_URI}/user/login` , body);
-            setUser(user);
+            const { data } = await axios.post(`${VITE_URI}/user/login` , body);
+            setData(data);
         }catch(error){
             console.error(error);
             setError(error.response.user);
@@ -52,11 +53,11 @@ export const UserProvider = ({children}) =>{
     };
     
     const logOut = () => {
-        setUser(null);
+        setData(null);
     }
 
     const value = {
-        user,
+        ...data,
         signUp,
         logIn,
         logOut,
