@@ -11,7 +11,6 @@ export default function (){
     
     const {user , signUp, logIn , logOut, error, loading} = useUser();
 
-    const [searchValue,setSearchValue] =useState('')
 
     return(
         <div className="navbar">
@@ -24,13 +23,7 @@ export default function (){
                 <NavLink className='link' to='/about'>About</NavLink>
                 <NavLink className='link' to='/Musicians'>Musicians</NavLink>
             </div>
-            <div >
-                <SearchBar
-                    onSearch={(searchValue)=>{setSearchValue(searchValue)}}
-                    //search value definisce il valore che andrà a definire
-                    //queries di ricerca 
-                />
-            </div>
+           
             <div>
                 {!user && 
                 <div>

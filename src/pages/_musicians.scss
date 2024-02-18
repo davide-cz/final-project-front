@@ -1,0 +1,19 @@
+.instrument-filter-buttons{
+    display: flex;
+    margin-left: 5vh;
+    margin-bottom: 1rem;
+    padding: 0.5rem;
+    gap: 1rem;
+    overflow-x:scroll;
+    height: 90px;
+    width: 90vw;
+    scrollbar-width: thin;
+    scroll-behavior: smooth;
+    scrollbar-shadow-color:aqua;
+
+
+    & .filter-button{
+        min-width: 150px;
+        border-radius: 2rem;
+    }
+}

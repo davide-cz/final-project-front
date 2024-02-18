@@ -56,27 +56,34 @@ export default function ({isOpen,setIsOpen}){
                             setIsOpen(false)
                     }}>close</button>
                 </div>
-                <h4>{user.user_name}</h4>
-                <select 
-                    value={musicianForm.instrument._id}
-                    onChange={e=>setMusicianForm(curr=>({...curr, instrument:e.target.value}))}>
-                    select an instrument
-                    {instrumentsArray.map(((instr , i)=>{
-                        return(
-                        <option key={`${instr}${i}`} value={`${instr._id}`}>
-                            {`${instr.principal_instrument}`} - {`${instr.role}`}
-                        </option>
-                        )
-                    }))}
-                </select>
-                <p>genre</p>
-                <input 
-                    type="text"value={musicianForm.genre}
-                    onChange={e=>setMusicianForm(curr=>({...curr, genre:e.target.value}))} />
-                <p>description</p>
-                <input 
-                    type="text"
-                    onChange={e=>setMusicianForm(curr=>({...curr, description:e.target.value}))} />
+                <form 
+                    className='musician-form' 
+                    action="">
+                        <h4>{user.user_name}</h4>
+                        <select 
+                            value={musicianForm.instrument._id}
+                            onChange={e=>setMusicianForm(curr=>({...curr, instrument:e.target.value}))}>
+                            select an instrument
+                            {instrumentsArray.map(((instr , i)=>{
+                                return(
+                                <option key={`${instr}${i}`} value={`${instr._id}`}>
+                                    {`${instr.principal_instrument}`} - {`${instr.role}`}
+                                </option>
+                                )
+                            }))}
+                        </select>
+                        <p>genre</p>
+                        <input 
+                            type="text"value={musicianForm.genre}
+                            onChange={e=>setMusicianForm(curr=>({...curr, genre:e.target.value}))} />
+                        <p>description</p>
+                        <textarea 
+                            rows="10" 
+                            cols="30" 
+                            wrap="soft" 
+                            type="text"
+                            onChange={e=>setMusicianForm(curr=>({...curr, description:e.target.value}))} />
+                </form>
                 <button onClick={()=>{
                     addMusician(musicianForm)
 

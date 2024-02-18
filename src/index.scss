@@ -1,5 +1,6 @@
 @import './components/navbar.scss';
 @import './pages/home.scss';
+@import './pages/musicians.scss';
 @import './components/musicianCard.scss';
 @import './modals/form.scss';
 
@@ -47,4 +48,12 @@ dialog{
     flex-wrap: wrap;
   }
     
+  .musician-form{
+    &>h4,p {
+      padding: .5rem;
+    }
+    &>input{
+      padding: .25rem;
+    }
+  }
  

@@ -8,6 +8,7 @@ import { useUser } from './contexts/UserContext'
 import ActiveUser from './pages/User'
 import SignIn from './modals/SignIn'
 import User from './pages/User'
+import SingleMusician from './pages/SingleMusician'
 
 function App() {
 
@@ -22,6 +23,7 @@ function App() {
         <Route path='/about' element={<About/>}/>
         <Route path='/user' element={<ActiveUser/>}/>
         <Route path='/musicians' element={<Musicians/>}/>
+        <Route path='/musicians/:id' element={<SingleMusician/>}/>
       </Routes>
     </>
   )
