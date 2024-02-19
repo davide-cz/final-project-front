@@ -1,0 +1,21 @@
+.user-profile-section{
+    display:flex;
+    flex-direction: column;
+    padding: 0 1rem 1rem 1rem;
+}
+.inserction-layout{
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    align-items: start;
+    padding: 1rem;
+}
+.imgs-inserction{
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+.user-section{
+    display: flex;
+    align-self: start;
+    gap: 1rem;
+}

@@ -20,7 +20,6 @@ export default function (){
                         <img src="../public/logo.png" alt="" />
                     </figure>
                 </NavLink>
-                <NavLink className='link' to='/about'>About</NavLink>
                 <NavLink className='link' to='/Musicians'>Musicians</NavLink>
             </div>
            

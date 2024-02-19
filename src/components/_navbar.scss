@@ -1,5 +1,5 @@
 .navbar {
-    background-color: rgb(224, 197, 255);
+    background-color:transparent;
     height: 60px;
     padding: 1rem;
     display:flex;
@@ -33,6 +33,7 @@
         align-items: center;
         justify-content: center;
         gap: 0.25rem;
+        padding: 1rem;
         
         & .search-button{
             height:25px;
@@ -46,7 +47,10 @@
             
         }
     }
-
+}
+.nav-interrupter{
+    height: 2px;
+    width: 95vw;
 }
 img{
     max-height: 100%;

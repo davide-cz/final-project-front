@@ -36,8 +36,10 @@ export default function ({isOpen,setIsOpen}){
     const [musicianForm,setMusicianForm]=useState({
         user:user._id,
         instrument:'',
+        title_inserction:'',
         genre:'',
         description:'',
+        pricing:0
     });
 
     const addMusician=(obj)=>{
@@ -74,9 +76,17 @@ export default function ({isOpen,setIsOpen}){
                         </select>
                         <p>genre</p>
                         <input 
+                            type="text"value={musicianForm.title_inserction}
+                            onChange={e=>setMusicianForm(curr=>({...curr, title_inserction:e.target.value}))} />
+                        <p>title</p>
+                        <input 
                             type="text"value={musicianForm.genre}
                             onChange={e=>setMusicianForm(curr=>({...curr, genre:e.target.value}))} />
-                        <p>description</p>
+                        <p>Price/h : €</p>
+                        <input 
+                            type="number"value={musicianForm.pricing}
+                            onChange={e=>setMusicianForm(curr=>({...curr, pricing:e.target.value}))} />
+                        <p>description </p>
                         <textarea 
                             rows="10" 
                             cols="30" 

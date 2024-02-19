@@ -36,7 +36,7 @@ export default function (){
             setInstrumentsArray(res.data)})
         .catch(error=>console.error(error))
     }
-    ,[])
+    ,[filteredArray])
     //funzione che filtra i risultati per instrument
     const filterByInstrument=(inst)=>{
         setFilteredArray(musiciansArray
@@ -47,11 +47,9 @@ export default function (){
 
     return (
         <>
-            <h3>This is the Musicianspage</h3>
-            <p>
-                Hello, those are the results of search
-            </p>
-            <div >
+            <h3 className="musicians-title">This is the Musicianspage</h3>
+            <p className="subtitle">here you can find the inserction you looking for </p>
+            <div className="searchbar">
                 <SearchBar
                     onSearch={(searchValue)=>{setSearchValue(searchValue)}}
                     //search value definisce il valore che andrà a definire
@@ -99,7 +97,10 @@ export default function (){
                 })
                 }
             </div>
-            <button>Let's start</button>
+                <button onClick={()=>{
+                    setFilteredArray(musiciansArray)
+                }}
+                >remove filter</button>
         </>
     )
 }
