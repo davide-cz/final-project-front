@@ -22,7 +22,7 @@ export default function (){
 //vengono filtrati i risultati per principal_instrument
 
     useEffect(()=>{
-        axios.get(`${VITE_URI || VITE_VERCEL_URI}/musicians`, axiosOpts(token))
+        axios.get(`${VITE_VERCEL_URI}/musicians`, axiosOpts(token))
         .then(res=>{setMusiciansArray(res.data)
             console.log(res.data)
             setFilteredArray(res.data
