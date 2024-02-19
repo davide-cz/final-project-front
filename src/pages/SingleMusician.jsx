@@ -9,11 +9,12 @@ export default function (){
     
     const {token}=useUser()
     const {VITE_URI}=import.meta.env
+    const {VITE_VERCEL_URI}=import.meta.env
     const {id}=useParams();
     const [musician,setMusician]=useState({})
 
     useEffect(()=>{
-        axios.get(`${VITE_URI}/musicians/${id}`, axiosOpts(token))
+        axios.get(`${VITE_URI || VITE_VERCEL_URI}/musicians/${id}`, axiosOpts(token))
         .then(res=>{console.log(res.data)
             setMusician(res.data)})
         .catch(error=>console.error(error))

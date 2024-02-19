@@ -10,6 +10,7 @@ export default function (){
     const {token}=useUser()
     
     const {VITE_URI}=import.meta.env
+    const {VITE_VERCEL_URI}=import.meta.env
     
     const [musiciansArray,setMusiciansArray]=useState([]);
     const [instrumentsArray,setInstrumentsArray]=useState([]);
@@ -21,7 +22,7 @@ export default function (){
 //vengono filtrati i risultati per principal_instrument
 
     useEffect(()=>{
-        axios.get(`${VITE_URI}/musicians`, axiosOpts(token))
+        axios.get(`${VITE_URI || VITE_VERCEL_URI}/musicians`, axiosOpts(token))
         .then(res=>{setMusiciansArray(res.data)
             console.log(res.data)
             setFilteredArray(res.data
@@ -31,7 +32,7 @@ export default function (){
     },[searchValue]);
 
     useEffect(()=>{
-        axios.get(`${VITE_URI}/instruments`, axiosOpts(token))
+        axios.get(`${VITE_URI || VITE_VERCEL_URI}/instruments`, axiosOpts(token))
         .then(res=>{
             setInstrumentsArray(res.data)})
         .catch(error=>console.error(error))
