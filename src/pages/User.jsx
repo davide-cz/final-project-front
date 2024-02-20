@@ -11,6 +11,7 @@ export default function (){
 
     
     const [isOpen,setIsOpen]=useState(false)
+    const [refreshList,setRefreshList]=useState(false)
     const [musiciansArray,setMusiciansArray]=useState([])
     const [filteredArray,setFilteredArray]=useState([])
     
@@ -39,11 +40,16 @@ export default function (){
                 .filter(mus=>mus.user?._id.includes(`${user?._id}`)))
             })
             .catch(error=>console.error(error))
-        },[]);
+        },[refreshList]);
         console.log(filteredArray)
 
 
     const [isUserMusican,seIsUserMuscian]=useState(false)
+
+    const deleteInserction=(id)=>{
+        axios.delete(`${VITE_URI}/musicians/${id}`, axiosOpts(token))
+        .then(console.log('inserction deleted'))
+    }
 
     return (
         <>
@@ -75,10 +81,20 @@ export default function (){
                 <h4>Those are your Inserctions:</h4>
                 {filteredArray.map((elem=>{
                     return(
-                        <Link to={`/musicians/${elem._id}`}>
-                            <h4>id inserction:{`${elem._id}`}</h4>
-                            <p>{`${elem.instrument.principal_instrument}`}</p>
-                        </Link>
+                        <div>
+                                <Link to={`/musicians/${elem._id}`}>
+                                    <h4>id inserction:{`${elem._id}`}</h4>
+                                    <p>{`${elem.instrument.principal_instrument}`}</p>
+                                </Link>
+                                <button onClick={()=>{
+                                    deleteInserction(elem._id)
+                                    setRefreshList(!refreshList)
+
+                                }}>
+                                    delete
+                                </button>
+                        </div>
+
                     )
                 }))}
             </div>

@@ -7,7 +7,7 @@ import { axiosOpts } from "../Ut/axiosOpt";
 export default function (){
 
     
-    const {token}=useUser()
+    const {user,token}=useUser()
     const {VITE_URI}=import.meta.env
     const {VITE_VERCEL_URI}=import.meta.env
     const {id}=useParams();
@@ -23,14 +23,15 @@ export default function (){
 
     return(
         <>
+            {user && 
             <div className="inserction-layout">
                 <figure className="main-img">
                     <img src="https://source.unsplash.com/random/800x500?studio" alt="inserction img" />
                 </figure>
                 <div className="user-profile-section">
                     <div className="user-section">
-                        <figure>
-                            <img src="https://source.unsplash.com/random/150x200?portrait" alt="profile img" />
+                        <figure className="prof-pic" >
+                            <img src="https://source.unsplash.com/random/200x200?portrait" alt="profile img" />
                         </figure>
                         <div>
                             <h4>
@@ -54,6 +55,11 @@ export default function (){
                     </div>
                 </div>
             </div>
+            }
+            {!user && 
+            <h2>Must be logged to see this Inserction!</h2>
+            
+            }
         </>
     )
 }
