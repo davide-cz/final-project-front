@@ -31,7 +31,7 @@ export default function (){
                 
                 }
                 {user && 
-                <div>
+                <div className="name-and-logout">
                     <NavLink className='link' to='/user'>{`${user.user_name}`}</NavLink>
                     <button 
                         onClick={()=>{

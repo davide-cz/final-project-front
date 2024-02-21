@@ -76,7 +76,7 @@ export default function ({isOpen,setIsOpen}){
                                     onChange={e=>setSignInForm(curr=>({...curr, password:e.target.value}))} />
                             </label>
                             <button onClick={()=>{
-                                
+                                 setIsOpen(false)
                             }}>submit</button>
                         </form>
                         
@@ -107,7 +107,7 @@ export default function ({isOpen,setIsOpen}){
                             </label>
 
                             <button onClick={()=>{
-                                user && setIsOpen(false)
+                                setIsOpen(false)
                             }}>submit</button>
                             <button onClick={()=>[
                                 setSignInLayout(true)

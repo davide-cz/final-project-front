@@ -14,9 +14,9 @@ export default function (){
     const [refreshList,setRefreshList]=useState(false)
     const [musiciansArray,setMusiciansArray]=useState([])
     const [filteredArray,setFilteredArray]=useState([])
+    const [favouritesArray,setFavouritesArray]=useState([])
     
-    const {user , token} = useUser();
-    console.log(user)
+    const {user , token , logOut} = useUser();
     
     //patch su ruolo utente, per pubblicare annuncio devi essere un musicista
     
@@ -42,6 +42,17 @@ export default function (){
             .catch(error=>console.error(error))
         },[refreshList]);
 
+    //chiamata che raccoglie i preferiti di USER        
+
+    useEffect(()=>{
+        axios.get(`${VITE_URI}/musicians`, axiosOpts(token))
+        .then(res=>{setMusiciansArray(res.data)
+            setFavouritesArray(res.data
+                .filter(mus=>mus.favourite_by_user.includes(`${user._id}`)))
+            })
+            .catch(error=>console.error(error))
+        },[refreshList]);
+
 
     const [isUserMusican,seIsUserMuscian]=useState(false)
 
@@ -63,9 +74,16 @@ export default function (){
             }
             {
                 user.role==='user' &&
-                <button
-                    onClick={()=>becomeMusician()}
-                >becomeMusician</button>
+                <div>
+                    <p>you can make your own insercions only after becoming 'musician'</p>
+                    <p>you will logged out to refresh your state, logIn again to add your own inserctions on this page</p>
+                    <button
+                        onClick={()=>{
+                            becomeMusician()
+                            logOut()}
+                        }
+                    >becomeMusician</button>
+                </div>
                 
             }
            <div className="modal-wrapper">
@@ -76,7 +94,7 @@ export default function (){
            </div>
            <div>
             {user.role ==='musician' &&
-            <div>
+            <section className="user-inserction">
                 <h4>Those are your Inserctions:</h4>
                 {filteredArray.map((elem=>{
                     return(
@@ -96,8 +114,23 @@ export default function (){
 
                     )
                 }))}
-            </div>
+            </section>
+            
             }
+            <div>
+                <section className="user-favourites">
+                    <h4>your favourites:</h4>
+                    {favouritesArray.map((mus,i) =>{
+                        return(
+                            <div key={`${mus.user_name}${i}`}>
+                                <h3>
+                                    {mus.title_inserction}-{mus.genre}
+                                </h3>
+                            </div>
+                        )
+                    })}
+                </section>
+            </div>
            </div>
         </>
     )

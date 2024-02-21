@@ -21,10 +21,32 @@ export default function (){
     }
     ,[])
 
-    //e aggiunge id inserzione all'array favourite_musicians
+    //funzione che aggiunge id inserzione all'array favourite_musicians
+    const addToUserFavourites=()=>{
+        axios.patch(`${VITE_URI}/user/${user.user_name}`,
+            {...user,
+                favourite_musicians:[...[musician._id]],
+            }
+            , axiosOpts(token))
+            .then(res=>{console.log(res.data)})
+            .catch(error=>console.error(error))
+    };
+     //funzione onClick che rimuove id musician da user favourite_musicians
+const removeFromUserFavourites = async () =>{
+    for (let i = 0 ; i<user.favourite_musicians.length ; i++){
+        if(user.favourite_musicians[i] == musician._id){
+            await axios.patch(`${VITE_URI}/user/${user.user_name}`,
+                {...user,
+                    favourite_musicians:[user.favourite_musicians.splice(i,1)]
+                }
+                , axiosOpts(token))
+        }
+    }
+}
+
     
     //funzione onClick che aggiunge id user favourite_by_user
-const addingToFavourites=()=>{
+const addToFavourites=()=>{
     axios.patch(`${VITE_URI}/musicians/${id}`,
         {...musician,
             favourite_by_user:[...[user._id]],
@@ -32,19 +54,24 @@ const addingToFavourites=()=>{
         , axiosOpts(token))
         .then(res=>{console.log(res.data)})
         .catch(error=>console.error(error))
-}
+};
+ //funzione onClick che romuove id user favourite_by_user
 const removeFavourites = async () =>{
     for (let i = 0 ; i<musician.favourite_by_user.length ; i++){
-        if(musician.favourite_by_user[i] == user._id){
+        let currentArray=musician.favourite_by_user
+        if(currentArray[i] === user._id){
+            currentArray.splice(i,1)
             await axios.patch(`${VITE_URI}/musicians/${id}`,
-                {...musician,
-                favourite_by_user:[musician.favourite_by_user.splice(i,1)]
+                {musician,
+                favourite_by_user:currentArray
                 }
                 , axiosOpts(token))
         }
     }
-    console.log(musician ,'favorite removed')
+    console.log(musician ,'favorite')
 }
+console.log(musician ,'favorite')
+console.log(user ,'user')
 
     return(
         <>
@@ -78,12 +105,14 @@ const removeFavourites = async () =>{
                             {musician.pricing}     
                         </p>
                         <button onClick={()=>{
-                            addingToFavourites()
+                            addToFavourites()
+                           /*  addToUserFavourites() */
                         }}>
                             add to favourites
                         </button>
                         <button onClick={()=>{
                             removeFavourites()
+                           /*  removeFromUserFavourites() */
                         }}>
                             remove from favourites
                         </button>

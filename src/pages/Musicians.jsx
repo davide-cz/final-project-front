@@ -26,7 +26,7 @@ export default function (){
         .then(res=>{setMusiciansArray(res.data)
             console.log(res.data)
             setFilteredArray(res.data
-                .filter(mus=>mus.instrument.principal_instrument.includes(`${searchValue}`)))
+                .filter(mus=>mus.title_inserction?.includes(`${searchValue}`)))
         })
         .catch(error=>console.error(error))
     },[searchValue]);

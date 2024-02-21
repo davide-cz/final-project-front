@@ -1,9 +1,12 @@
 import { useState } from "react";
 import SignIn from "../modals/SignIn";
 import MusicianCard from "../components/MusicianCard";
+import { Link } from "react-router-dom";
+import { useUser } from "../contexts/UserContext";
 
 export default function (){
 
+    const {user , token , logOut} = useUser();
     
     const [isOpen,setIsOpen]=useState(false)
 
@@ -18,7 +21,15 @@ export default function (){
                         from all over the neighborhood 
                     </p>
                     <p>Join now to see what the neighborhood has to offer!</p>
-                    <button onClick={()=>setIsOpen(true)}>Log/Sign</button>
+                    {!user ? 
+                        <button onClick={()=>setIsOpen(true)}>Log/Sign</button>
+                        :
+                        <Link className="link" to={'/user'}>
+                            <h4>
+                                Go to your personal page.
+                            </h4>
+                        </Link>
+                    }
                 </div>
             </div>
             <div className="modal-wrapper">
