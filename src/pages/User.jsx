@@ -41,14 +41,13 @@ export default function (){
             })
             .catch(error=>console.error(error))
         },[refreshList]);
-        console.log(filteredArray)
 
 
     const [isUserMusican,seIsUserMuscian]=useState(false)
 
     const deleteInserction=(id)=>{
         axios.delete(`${VITE_URI}/musicians/${id}`, axiosOpts(token))
-        .then(console.log('inserction deleted'))
+        .then(console.log(`inserction with id:${id} deleted`))
     }
 
     return (
@@ -81,7 +80,7 @@ export default function (){
                 <h4>Those are your Inserctions:</h4>
                 {filteredArray.map((elem=>{
                     return(
-                        <div>
+                        <div key={`${elem._id}`}>
                                 <Link to={`/musicians/${elem._id}`}>
                                     <h4>id inserction:{`${elem._id}`}</h4>
                                     <p>{`${elem.instrument.principal_instrument}`}</p>

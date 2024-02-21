@@ -57,6 +57,7 @@ export default function (){
                     //queries di ricerca 
                 />
             </div>
+            <h4>select a filter for a more specific research:</h4>
             <div className="instrument-filter-buttons">
             {instrumentsArray.map((inst=>{
                 //filtro i musicisti con i buttons che indicano lo strumento

@@ -14,12 +14,37 @@ export default function (){
     const [musician,setMusician]=useState({})
 
     useEffect(()=>{
-        axios.get(`${VITE_URI || VITE_VERCEL_URI}/musicians/${id}`, axiosOpts(token))
+        axios.get(`${VITE_URI}/musicians/${id}`, axiosOpts(token))
         .then(res=>{console.log(res.data)
             setMusician(res.data)})
         .catch(error=>console.error(error))
     }
     ,[])
+
+    //e aggiunge id inserzione all'array favourite_musicians
+    
+    //funzione onClick che aggiunge id user favourite_by_user
+const addingToFavourites=()=>{
+    axios.patch(`${VITE_URI}/musicians/${id}`,
+        {...musician,
+            favourite_by_user:[...[user._id]],
+        }
+        , axiosOpts(token))
+        .then(res=>{console.log(res.data)})
+        .catch(error=>console.error(error))
+}
+const removeFavourites = async () =>{
+    for (let i = 0 ; i<musician.favourite_by_user.length ; i++){
+        if(musician.favourite_by_user[i] == user._id){
+            await axios.patch(`${VITE_URI}/musicians/${id}`,
+                {...musician,
+                favourite_by_user:[musician.favourite_by_user.splice(i,1)]
+                }
+                , axiosOpts(token))
+        }
+    }
+    console.log(musician ,'favorite removed')
+}
 
     return(
         <>
@@ -30,7 +55,7 @@ export default function (){
                 </figure>
                 <div className="user-profile-section">
                     <div className="user-section">
-                        <figure className="prof-pic" >
+                        <figure className="prof-pic-inserction" >
                             <img src="https://source.unsplash.com/random/200x200?portrait" alt="profile img" />
                         </figure>
                         <div>
@@ -52,6 +77,16 @@ export default function (){
                         <p>price for the request:
                             {musician.pricing}     
                         </p>
+                        <button onClick={()=>{
+                            addingToFavourites()
+                        }}>
+                            add to favourites
+                        </button>
+                        <button onClick={()=>{
+                            removeFavourites()
+                        }}>
+                            remove from favourites
+                        </button>
                     </div>
                 </div>
             </div>
