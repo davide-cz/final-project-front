@@ -54,22 +54,22 @@ export default function ({isOpen,setIsOpen}){
                     <div className="sign-form">
                         <h2 className="login-title">SignUp</h2>
                         <form onSubmit={signUser}>
-                            <label htmlFor="">
-                                <p>UserName</p>
+                            <label >
+                                <p  className='form-name'>UserName:</p>
                                 <input 
                                     type="text"
                                     value={signInForm.user_name}
                                     onChange={e=>setSignInForm(curr=>({...curr, user_name:e.target.value}))} />
                             </label>
                             <label htmlFor="">
-                                <p>Email</p>
+                                <p className='form-name'>Email:</p>
                                 <input 
                                     type="email"
                                     value={signInForm.email}
                                     onChange={e=>setSignInForm(curr=>({...curr, email:e.target.value}))} />
                             </label>
                             <label htmlFor="">
-                                <p>Password</p>
+                                <p className='form-name'>Password:</p>
                                 <input 
                                     type="password"
                                     value={signInForm.password}
@@ -92,14 +92,14 @@ export default function ({isOpen,setIsOpen}){
                     <h2 className="login-title">LogIn</h2>
                     <form onSubmit={logUser}>
                             <label htmlFor="">
-                                <p>Email</p>
+                                <p className='form-name'>Email:</p>
                                 <input 
                                     type="email"
                                     value={signInForm.email}
                                     onChange={e=>setSignInForm(curr=>({...curr, email:e.target.value}))} />
                             </label>
                             <label htmlFor="">
-                                <p>Password</p>
+                                <p className='form-name'>Password:</p>
                                 <input 
                                     type="password"
                                     value={signInForm.password}
@@ -109,12 +109,12 @@ export default function ({isOpen,setIsOpen}){
                             <button onClick={()=>{
                                 setIsOpen(false)
                             }}>submit</button>
+                        </form>
                             <button onClick={()=>[
                                 setSignInLayout(true)
                                 ]}>
                                     Not subscribed?
                         </button>
-                        </form>
                     </div>
                  }
                 </div>

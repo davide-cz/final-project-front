@@ -94,6 +94,7 @@ export default function (){
                             name={mus.user?.user_name}
                             instrument={mus.instrument.principal_instrument}
                             genre={mus.genre}
+                            pricing={mus.pricing}
                         />
                     )
                 })

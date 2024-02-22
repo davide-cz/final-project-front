@@ -1,6 +1,6 @@
 .instrument-filter-buttons{
     display: flex;
-    margin: 1rem 5vw;
+    margin: 1rem 8.5vw;
     padding: 0.5rem;
     gap: 1rem;
     overflow-x:scroll;
@@ -8,8 +8,7 @@
     scrollbar-width: thin;
     scroll-behavior: smooth;
     scrollbar-shadow-color:aqua;
-
-
+    
     & .filter-button{
         min-width: 150px;
         border-radius: 2rem;
@@ -20,4 +19,28 @@
 }
 .subtitle{
     padding: 0.5rem;
+}
+
+.musician-reel{
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+@media (max-width:640px){
+    
+  .musician-reel{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    gap: 1rem;
+    width: 100%;
+    
+    & .musician-reel a {
+        flex-grow: 1;
+    }
+  }
+
 }

@@ -18,7 +18,6 @@ function App() {
   return (
     <div className='main-app'>
       <NavBar/>
-      <hr className='nav-interupter'/>
       <div className='app-body'>
         <Routes>
           <Route path='/' element={<Home/>}/>

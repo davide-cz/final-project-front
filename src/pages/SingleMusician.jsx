@@ -11,7 +11,9 @@ export default function (){
     const {VITE_URI}=import.meta.env
     const {VITE_VERCEL_URI}=import.meta.env
     const {id}=useParams();
-    const [musician,setMusician]=useState({})
+    const [musician,setMusician]=useState({});
+    const [isAddToFav,setIsAddToFav]=useState(false)
+    const [isRemoveToFav,setIsRemoveToFav]=useState(false)
 
     useEffect(()=>{
         axios.get(`${VITE_URI}/musicians/${id}`, axiosOpts(token))
@@ -68,10 +70,7 @@ const removeFavourites = async () =>{
                 , axiosOpts(token))
         }
     }
-    console.log(musician ,'favorite')
 }
-console.log(musician ,'favorite')
-console.log(user ,'user')
 
     return(
         <>
@@ -85,7 +84,7 @@ console.log(user ,'user')
                         <figure className="prof-pic-inserction" >
                             <img src="https://source.unsplash.com/random/200x200?portrait" alt="profile img" />
                         </figure>
-                        <div>
+                        <div className="user-info">
                             <h4>
                                 {musician.user?.user_name} 
                             </h4>
@@ -98,11 +97,15 @@ console.log(user ,'user')
                         <h3>
                             {musician?.title}     
                         </h3>
-                        <p>
-                            {musician.description}     
+                        <h6> About me:</h6>
+                        <p className="mus-description">
+                           {musician.description}     
                         </p>
-                        <p>price for the request:
-                            {musician.pricing}     
+                        <h6>
+                            price for the request:
+                        </h6>
+                        <p>
+                            {musician.pricing} €/h     
                         </p>
                         <button onClick={()=>{
                             addToFavourites()

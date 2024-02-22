@@ -54,11 +54,10 @@ export default function (){
         },[refreshList]);
 
 
-    const [isUserMusican,seIsUserMuscian]=useState(false)
-
     const deleteInserction=(id)=>{
         axios.delete(`${VITE_URI}/musicians/${id}`, axiosOpts(token))
         .then(console.log(`inserction with id:${id} deleted`))
+        .catch(error=>console.error(error))
     }
 
     return (
@@ -106,12 +105,10 @@ export default function (){
                                 <button onClick={()=>{
                                     deleteInserction(elem._id)
                                     setRefreshList(!refreshList)
-
                                 }}>
                                     delete
                                 </button>
                         </div>
-
                     )
                 }))}
             </section>

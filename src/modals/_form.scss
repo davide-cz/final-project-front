@@ -4,3 +4,39 @@
 .dialog-modal{
     background-color: rgb(229, 223, 223);
 }
+.form-name{
+    padding: 0.25rem 0;
+}
+
+dialog{
+    $dialogWidth: 30vw;
+    $dialogHeight: 80vh;
+    width: $dialogWidth;
+    height: $dialogHeight;
+    left: calc((100vw - $dialogWidth)/2);
+    top: calc((100vh - $dialogHeight)/2);
+    padding: .5rem;
+    border-radius: 1rem;
+  }
+
+@media (max-width:640px){
+    dialog{
+        $dialogWidth: 80vw;
+        $dialogHeight: 60vh;
+        width: $dialogWidth;
+        height: $dialogHeight;
+        left: calc((100vw - $dialogWidth)/2);
+        top: calc((100vh - $dialogHeight)/2);
+      }
+}
+
+@media (max-width:480px){
+    dialog{
+        $dialogWidth: 95vw;
+        $dialogHeight: 80vh;
+        width: $dialogWidth;
+        height: $dialogHeight;
+        left: calc((100vw - $dialogWidth)/2);
+        top: calc((100vh - $dialogHeight)/2);
+      }
+}

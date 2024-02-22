@@ -1,7 +1,7 @@
 import { Link, NavLink } from "react-router-dom";
 import SingleMusician from "../pages/SingleMusician";
 
-export default function ({id, genre, description, name, instrument }){
+export default function ({id, genre, pricing, name, instrument }){
     return(
         <>
             <Link to={`/musicians/${id}`}>  
@@ -17,7 +17,8 @@ export default function ({id, genre, description, name, instrument }){
                             <h4 className="name-card">
                                     {name}
                             </h4>
-                            <p>{instrument} - {genre}</p>
+                            <p>{instrument} - {pricing} €/h</p>
+                            <p className="genre">{genre}</p>
                         
                         </div>
                     </div>
