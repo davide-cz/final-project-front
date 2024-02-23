@@ -1,6 +1,7 @@
 @import './components/navbar.scss';
 @import './pages/home.scss';
 @import './pages/musicians.scss';
+@import './pages/user.scss';
 @import './pages/singleMusician.scss';
 @import './components/musicianCard.scss';
 @import './modals/form.scss';
@@ -64,7 +65,7 @@
     padding: 0.5rem;
   }
   
- a {
+ a, .link {
   text-decoration:none;
   color: inherit;
   & :hover{

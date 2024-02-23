@@ -28,25 +28,7 @@
             font-weight: 700;
         }
     }
-    .searchbar{
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 0.25rem;
-        padding: 1rem;
-        
-        & .search-button{
-            height:25px;
-            padding: 0 0.5rem;
-        }
-        
-        & .inputbar{
-            width: 400px;
-            height: 30px;
-            padding: 0 0.5rem;
-            
-        }
-    }
+    
 }
 .nav-interrupter{
     height: 2px;

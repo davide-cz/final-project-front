@@ -27,7 +27,7 @@
 }
 .inserction-layout{
     display: grid;
-    grid-template-columns: 2fr 1.5fr;
+    grid-template-columns: 1fr 1fr;
     align-items: start;
     align-items: start;
     padding: 1rem;
@@ -46,5 +46,16 @@
 .main-img{
     & img{
         border-radius: 1rem;
+        border: 4px solid rgb(97, 94, 94)
+    }
+}
+
+@media (max-width:1024px){
+    .inserction-layout{
+        display: flex;
+        flex-direction: column;
+        & .user-profile-section{
+            padding-bottom: 1rem ;
+        }
     }
 }

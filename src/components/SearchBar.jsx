@@ -14,7 +14,7 @@ export default function ({onSearch}){
                     onChange={(e)=>{setValue(e.target.value)}}
                 />
                 <button 
-                    onClick={()=>{onSearch(value)}}
+                    onClick={()=>{onSearch(value.toLowerCase())}}
                     className="search-button"
                 >search</button>
             </div>

@@ -19,14 +19,14 @@ export default function (){
     const [searchValue,setSearchValue] =useState('')
 
 //chiamata di tutti gli annunci, all'inserimento di searchvalue,
-//vengono filtrati i risultati per principal_instrument
+//vengono filtrati i risultati per title
 
     useEffect(()=>{
         axios.get(`${VITE_URI}/musicians`, axiosOpts(token))
         .then(res=>{setMusiciansArray(res.data)
             console.log(res.data)
             setFilteredArray(res.data
-                .filter(mus=>mus.title_inserction?.includes(`${searchValue}`)))
+                .filter(mus=>mus.title_inserction?.toLowerCase().includes(`${searchValue}`)))
         })
         .catch(error=>console.error(error))
     },[searchValue]);
@@ -50,7 +50,8 @@ export default function (){
         <>
             <h3 className="musicians-title">This is the Musicianspage</h3>
             <p className="subtitle">here you can find the inserction you looking for </p>
-            <div className="searchbar">
+            <div className="searchbar-section">
+                <h4>Search by title</h4>
                 <SearchBar
                     onSearch={(searchValue)=>{setSearchValue(searchValue)}}
                     //search value definisce il valore che andrà a definire

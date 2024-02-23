@@ -3,7 +3,7 @@ import { useEffect, useState } from "react"
 import { useUser } from "../contexts/UserContext";
 import MusiciansForm from "../modals/MusiciansForm";
 import { axiosOpts } from "../Ut/axiosOpt";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const {VITE_URI}=import.meta.env
 
@@ -17,6 +17,8 @@ export default function (){
     const [favouritesArray,setFavouritesArray]=useState([])
     
     const {user , token , logOut} = useUser();
+
+    const navigate=useNavigate()
     
     //patch su ruolo utente, per pubblicare annuncio devi essere un musicista
     
@@ -79,7 +81,8 @@ export default function (){
                     <button
                         onClick={()=>{
                             becomeMusician()
-                            logOut()}
+                            logOut()
+                            navigate('/')}
                         }
                     >becomeMusician</button>
                 </div>
@@ -91,6 +94,25 @@ export default function (){
                     setIsOpen={c=>setIsOpen(c)}
                 />
            </div>
+           <div>
+                {!favouritesArray ==! [] &&
+                    <section className="user-favourites">
+                        <h4>{user.user_name}'s' favourites:</h4>
+                            <ul >
+                                {favouritesArray.map((mus,i) =>{
+                                    return(
+                                        <li className="link" key={`${mus.user_name}${i}`}>
+                                            <Link to={`/musicians/${mus._id}`}>
+                                                ♦ {mus.title_inserction}-{mus.genre}
+                                            </Link>
+                                        </li>
+                                    )
+                                })}
+                            </ul>
+                    </section>
+                
+                }
+            </div>
            <div>
             {user.role ==='musician' &&
             <section className="user-inserction">
@@ -112,22 +134,7 @@ export default function (){
                     )
                 }))}
             </section>
-            
             }
-            <div>
-                <section className="user-favourites">
-                    <h4>your favourites:</h4>
-                    {favouritesArray.map((mus,i) =>{
-                        return(
-                            <div key={`${mus.user_name}${i}`}>
-                                <h3>
-                                    {mus.title_inserction}-{mus.genre}
-                                </h3>
-                            </div>
-                        )
-                    })}
-                </section>
-            </div>
            </div>
         </>
     )
