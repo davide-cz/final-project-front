@@ -42,7 +42,7 @@ export default function ({isOpen,setIsOpen}){
     return(
         <>
         
-            <dialog ref={dialogRef} className="sign-modal">
+            <dialog ref={dialogRef} className="dialog-modal">
                 <div>
                     <div className="close-button">
                         <button 

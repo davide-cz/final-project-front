@@ -116,11 +116,6 @@ export default function ({isOpen,setIsOpen,refresh}){
                     setIsOpen(false)
                     refresh(false)
                 }}>Sign</button>
-                <button onClick={()=>{
-                    editInserction(musicians._id)
-                    setIsOpen(false)
-                    refresh(false)
-                }}>edit</button>
                 
             </dialog>
         </>

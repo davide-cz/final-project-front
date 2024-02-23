@@ -12,34 +12,32 @@
 }
 
 dialog{
-    $dialogWidth: 30vw;
-    $dialogHeight: 80vh;
-    width: $dialogWidth;
-    height: $dialogHeight;
-    left: calc((100vw - $dialogWidth)/2);
-    top: calc((100vh - $dialogHeight)/2);
+    left: calc((100vw - 50vw)/2);
+    top: calc((100vh - 80vw)/2);
     padding: .5rem;
     border-radius: 1rem;
   }
 
 @media (max-width:640px){
     dialog{
-        $dialogWidth: 80vw;
-        $dialogHeight: 60vh;
-        width: $dialogWidth;
-        height: $dialogHeight;
-        left: calc((100vw - $dialogWidth)/2);
-        top: calc((100vh - $dialogHeight)/2);
+        left: calc((100vw - 80vw)/2);
+        top: calc((100vh - 90vh)/2);
+      }
+      .dialog-modal{
+          width: 80vw;
+          height: 90vw;
+          top: 5vh;
       }
 }
 
 @media (max-width:480px){
     dialog{
-        $dialogWidth: 95vw;
-        $dialogHeight: 80vh;
-        width: $dialogWidth;
-        height: $dialogHeight;
-        left: calc((100vw - $dialogWidth)/2);
-        top: calc((100vh - $dialogHeight)/2);
+        left: calc((100vw - 90vw)/2);
+        top: calc((100vh - 90vw)/2);
+      }
+      .dialog-modal{
+          width: 90vw;
+          height: 90vw;
+          top: 5vh;
       }
 }
