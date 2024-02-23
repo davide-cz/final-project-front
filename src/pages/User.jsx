@@ -15,6 +15,7 @@ export default function (){
     const [musiciansArray,setMusiciansArray]=useState([])
     const [filteredArray,setFilteredArray]=useState([])
     const [favouritesArray,setFavouritesArray]=useState([])
+    const [musicianToEdit,setMusicianToEdit]=useState({})
 
     
     const {user , token , logOut} = useUser();
@@ -63,20 +64,22 @@ export default function (){
         .catch(error=>console.error(error))
     }
 
+
     return (
         <>
-            <h3>{`${user.user_name}`}</h3>
-            <p>
+            <h3 className="left-side">{`${user.user_name}`}</h3>
+            <p className="left-side">
                 Hello,this is {`${user.user_name}`} page.
             </p>
             {user.role==='musician' &&
                 <button
+                className="left-side"
                     onClick={()=>setIsOpen(true)}
                 >add musician</button>            
             }
             {
                 user.role==='user' &&
-                <div>
+                <div className="left-side">
                     <p>you can make your own insercions only after becoming 'musician'</p>
                     <p>you will logged out to refresh your state, logIn again to add your own inserctions on this page</p>
                     <button
@@ -94,13 +97,14 @@ export default function (){
                     isOpen={isOpen}
                     setIsOpen={c=>{setIsOpen(c)}}
                     refresh={c=>(setRefreshList(!c))}
+                    musician={musicianToEdit}
                 />
            </div>
            <main className="main-user-section">
                 <div>
                     {!favouritesArray ==! [] &&
                         <section className="user-favourites">
-                            <h4>{user.user_name}'s' favourites:</h4>
+                            <h4 className="left-side">{user.user_name}'s' favourites:</h4>
                            <ul  className="inserction-list">
                         {favouritesArray.map((elem=>{
                             return(
@@ -128,23 +132,35 @@ export default function (){
                         <ul  className="inserction-list">
                         {filteredArray.map((elem=>{
                             return(
-                                    <li  key={`${elem._id}`}>
-                                        <Link className='single-ins' to={`/musicians/${elem._id}` }>
-                                            <figure className="thumbnail-owner">
-                                                <img src="https://source.unsplash.com/random/350x200?musician" alt="rndm img" />
-                                            </figure>
-                                            <div>
-                                                <h4>{`${elem.title_inserction}`}</h4>
-                                                <p>{`${elem.instrument.principal_instrument}`}</p>
-                                                <button onClick={()=>{
-                                                    deleteInserction(elem._id)
-                                                    setRefreshList(!refreshList)
-                                                }}>
-                                                    delete
-                                                </button>
-                                            </div>
-                                        </Link>
-                                    </li>
+                                <li  key={`${elem._id}`}>
+                                    <Link className='single-ins' to={`/musicians/${elem._id}` }>
+                                        <figure className="thumbnail-owner">
+                                            <img src="https://source.unsplash.com/random/350x200?musician" alt="rndm img" />
+                                        </figure>
+                                        <div>
+                                            <h4>{`${elem.title_inserction}`}</h4>
+                                            <p>{`${elem.instrument.principal_instrument}`}</p>
+                                            
+                                        </div>
+                                    </Link>
+                                    <div className="edit-delete">
+                                        <button 
+                                            className='delete' 
+                                            onClick={()=>{
+                                            deleteInserction(elem._id)
+                                            setRefreshList(!refreshList)
+                                        }}>
+                                            delete
+                                        </button >
+                                        <button  
+                                            onClick={()=>{
+                                            setIsOpen(true)
+                                            navigate(`/musicians/${elem._id}`)
+                                        }}>
+                                            edit
+                                        </button>
+                                    </div>
+                                </li>
                             )
                         }))}
                         </ul>

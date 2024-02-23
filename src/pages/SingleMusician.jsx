@@ -3,6 +3,7 @@ import { useEffect, useState } from "react"
 import { useNavigate, useParams } from "react-router-dom"
 import { useUser } from "../contexts/UserContext";
 import { axiosOpts } from "../Ut/axiosOpt";
+import PatchMusician from "../modals/PatchMusician";
 
 export default function (){
 
@@ -12,8 +13,9 @@ export default function (){
     const {VITE_VERCEL_URI}=import.meta.env
     const {id}=useParams();
     const [musician,setMusician]=useState({});
-    const [isAddToFav,setIsAddToFav]=useState(false)
+    const [refresh,setRefresh]=useState(false)
     const [isRemoveToFav,setIsRemoveToFav]=useState(false)
+    const [isOpen,setIsOpen]=useState(false)
 
     const navigate=useNavigate()
 
@@ -25,11 +27,10 @@ export default function (){
 
     useEffect(()=>{
         axios.get(`${VITE_URI}/musicians/${id}`, axiosOpts(token))
-        .then(res=>{console.log(res.data)
-            setMusician(res.data)})
+        .then(res=>{setMusician(res.data)})
         .catch(error=>console.error(error))
     }
-    ,[])
+    ,[refresh])
 
     //funzione che aggiunge id inserzione all'array favourite_musicians
     const addToUserFavourites=()=>{
@@ -82,6 +83,12 @@ const removeFavourites = async () =>{
 
     return(
         <>
+            <div className="modal-wrapper">
+                <PatchMusician
+                    isOpen={isOpen}
+                    setIsOpen={c=>{setIsOpen(c)}}
+                />
+           </div>
             {user && 
             <div className="inserction-layout">
                 <figure className="main-img">
@@ -126,18 +133,33 @@ const removeFavourites = async () =>{
                         <p>
                             {musician.pricing} €/h     
                         </p>
-                        <button onClick={()=>{
-                            addToFavourites()
-                           /*  addToUserFavourites() */
-                        }}>
-                            add to favourites
-                        </button>
-                        <button onClick={()=>{
-                            removeFavourites()
-                           /*  removeFromUserFavourites() */
-                        }}>
-                            remove from favourites
-                        </button>
+                        <div className="buttons">
+                            {
+                                musician.favourite_by_user?.includes(user._id)?
+                                <button onClick={()=>{
+                                    removeFavourites()
+                                    setRefresh(!refresh)
+                                /*  removeFromUserFavourites() */
+                                }}>
+                                    remove from favourites
+                                </button>:
+                                <button onClick={()=>{
+                                    addToFavourites()
+                                    setRefresh(!refresh)
+                                /*  addToUserFavourites() */
+                                }}>
+                                    add to favourites
+                                </button>
+                            }
+                          
+                            {musician.user?._id==user._id &&
+                            <button onClick={()=>{
+                                setIsOpen(true)
+                            }}>
+                                edit
+                            </button>
+                            }
+                        </div>
                         
                     </div>
                 </div>

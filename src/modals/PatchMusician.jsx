@@ -3,20 +3,20 @@ import { useState } from "react"
 import { useUser } from "../contexts/UserContext";
 import axios from "axios";
 import { axiosOpts } from "../Ut/axiosOpt";
+import { useParams } from "react-router-dom";
 
 
 
-export default function ({isOpen,setIsOpen,refresh}){
+export default function ({isOpen,setIsOpen}){
     
     const {VITE_URI} = import.meta.env;
     
     const {user , token} = useUser();
 
-
-    const { signUp, logIn, error, loading } = useUser();
-
     const [instrumentsArray,setInstrumentsArray]=useState([]);
+    const [refresh,setRefresh]=useState(false);
     
+    const {id}=useParams()
 
     const dialogRef=useRef()
 
@@ -29,9 +29,11 @@ export default function ({isOpen,setIsOpen,refresh}){
     },[isOpen])
 
     useEffect(()=>{axios.get(`${VITE_URI}/instruments`)
-        .then(obj=>{setInstrumentsArray(obj.data)})
+        .then(obj=>{setInstrumentsArray(obj.data)
+            console.log(obj.data)})
         .catch(error=>console.error(error));
-    },[])
+    },[refresh])
+
 
     const [musicianForm,setMusicianForm]=useState({
         user:user._id,
@@ -42,25 +44,23 @@ export default function ({isOpen,setIsOpen,refresh}){
         pricing:0
     });
 
-    const addMusician=(obj)=>{
-        axios.post(`${VITE_URI}/musicians`,obj, axiosOpts(token))
-        .then(()=>console.log('musician was added'))
-        .catch((error)=>console.error(error))
-    };
+    useEffect(()=>{axios.get(`${VITE_URI}/musicians/${id} ` ,  axiosOpts(token))
+        .then(obj=>{setMusicianForm(obj.data)
+            console.log(obj.data)})
+        .catch(error=>console.error(error));
+    },[])
 
-    
-    const editInserction=(_id)=>{
+    const editInserction=()=>{
         const body = {};
         Object.entries(musicianForm).forEach(([key, value]) => {
             if(value){
                 body[key] = value;
             }
         })
-        axios.patch(`${VITE_URI}/musicians/${musician._id}`, body)
+        axios.patch(`${VITE_URI}/musicians/${id}`, body ,  axiosOpts(token))
         .then(res => {
-            setMusicianForm(res.data);
-            setIsOpen(false);
-        })
+            setMusicianForm(res.data)
+            setIsOpen(false)})
         .catch(err => {
             console.error(err);
         });
@@ -104,7 +104,7 @@ export default function ({isOpen,setIsOpen,refresh}){
                             type="number"value={musicianForm.pricing}
                             onChange={e=>setMusicianForm(curr=>({...curr, pricing:e.target.value}))} />
                         <p>description</p>
-                        <textarea 
+                        <textarea
                             rows="7" 
                             cols="30" 
                             wrap="soft" 
@@ -112,16 +112,10 @@ export default function ({isOpen,setIsOpen,refresh}){
                             onChange={e=>setMusicianForm(curr=>({...curr, description:e.target.value}))} />
                 </form>
                 <button onClick={()=>{
-                    addMusician(musicianForm)
+                    editInserction()
                     setIsOpen(false)
-                    refresh(false)
-                }}>Sign</button>
-                <button onClick={()=>{
-                    editInserction(musicians._id)
-                    setIsOpen(false)
-                    refresh(false)
+                    setRefresh(!refresh)
                 }}>edit</button>
-                
             </dialog>
         </>
     )

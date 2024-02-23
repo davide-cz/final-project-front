@@ -64,7 +64,20 @@
        & .single-ins{
            display: flex;
            gap: 1rem;
+       }
+       & .edit-delete {
+        display: flex;
+        gap: 0.5rem;
+        padding: 0.25rem;
+        & button{
+            height: 1.5rem;
+            padding: 0;
+        }
        }    
+}
+.left-side{
+    padding: 0.5rem;
+    margin-left:1rem;
 }
 
 @media  (max-width:1024px){
