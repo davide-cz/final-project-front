@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react"
-import { useParams } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 import { useUser } from "../contexts/UserContext";
 import { axiosOpts } from "../Ut/axiosOpt";
 
@@ -14,6 +14,14 @@ export default function (){
     const [musician,setMusician]=useState({});
     const [isAddToFav,setIsAddToFav]=useState(false)
     const [isRemoveToFav,setIsRemoveToFav]=useState(false)
+
+    const navigate=useNavigate()
+
+    const deleteInserction=(id)=>{
+        axios.delete(`${VITE_URI}/musicians/${id}`, axiosOpts(token))
+        .then(console.log(`inserction with id:${id} deleted`))
+        .catch(error=>console.error(error))
+    }
 
     useEffect(()=>{
         axios.get(`${VITE_URI}/musicians/${id}`, axiosOpts(token))
@@ -91,6 +99,17 @@ const removeFavourites = async () =>{
                             <h3>
                                 {musician.genre}     
                             </h3>
+                            {user.role==='admin' && 
+                            //button per delete by ADMIN
+                                <button 
+                                    className="delete"
+                                    onClick={()=>{
+                                    deleteInserction(id)
+                                    navigate('/musicians')
+                                }}>
+                                    delete
+                                </button>
+                            }
                         </div>
                     </div>
                     <div>
@@ -119,6 +138,7 @@ const removeFavourites = async () =>{
                         }}>
                             remove from favourites
                         </button>
+                        
                     </div>
                 </div>
             </div>

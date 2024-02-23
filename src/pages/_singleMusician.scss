@@ -30,7 +30,7 @@
     grid-template-columns: 1fr 1fr;
     align-items: start;
     align-items: start;
-    padding: 1rem;
+    padding: 2rem;
     gap: 1rem;
 }
 .imgs-inserction{
@@ -49,6 +49,11 @@
         border: 4px solid rgb(97, 94, 94)
     }
 }
+
+.delete {
+    color: red;
+}
+
 
 @media (max-width:1024px){
     .inserction-layout{

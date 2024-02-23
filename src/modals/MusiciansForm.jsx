@@ -6,7 +6,7 @@ import { axiosOpts } from "../Ut/axiosOpt";
 
 
 
-export default function ({isOpen,setIsOpen}){
+export default function ({isOpen,setIsOpen,refresh}){
     
     const {VITE_URI} = import.meta.env;
     
@@ -16,6 +16,7 @@ export default function ({isOpen,setIsOpen}){
     const { signUp, logIn, error, loading } = useUser();
 
     const [instrumentsArray,setInstrumentsArray]=useState([]);
+    
 
     const dialogRef=useRef()
 
@@ -88,7 +89,7 @@ export default function ({isOpen,setIsOpen}){
                             onChange={e=>setMusicianForm(curr=>({...curr, pricing:e.target.value}))} />
                         <p>description </p>
                         <textarea 
-                            rows="10" 
+                            rows="7" 
                             cols="30" 
                             wrap="soft" 
                             type="text"
@@ -96,6 +97,8 @@ export default function ({isOpen,setIsOpen}){
                 </form>
                 <button onClick={()=>{
                     addMusician(musicianForm)
+                    setIsOpen(false)
+                    refresh(false)
 
                 }}>Sign</button>
             </dialog>

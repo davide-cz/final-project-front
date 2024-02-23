@@ -46,9 +46,12 @@ export default function (){
 
     }
 
+    
+
+
     return (
         <>
-            <h3 className="musicians-title">This is the Musicianspage</h3>
+            <h4 className="musicians-title">This is the Musicianspage</h4>
             <p className="subtitle">here you can find the inserction you looking for </p>
             <div className="searchbar-section">
                 <h4>Search by title</h4>
@@ -58,7 +61,7 @@ export default function (){
                     //queries di ricerca 
                 />
             </div>
-            <h4>select a filter for a more specific research:</h4>
+            <h4 className="musicians-title">select a filter for a more specific research:</h4>
             <div className="instrument-filter-buttons">
             {instrumentsArray.map((inst=>{
                 //filtro i musicisti con i buttons che indicano lo strumento

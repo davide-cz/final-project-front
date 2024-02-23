@@ -15,6 +15,7 @@ export default function (){
     const [musiciansArray,setMusiciansArray]=useState([])
     const [filteredArray,setFilteredArray]=useState([])
     const [favouritesArray,setFavouritesArray]=useState([])
+
     
     const {user , token , logOut} = useUser();
 
@@ -42,7 +43,7 @@ export default function (){
                 .filter(mus=>mus.user?._id.includes(`${user?._id}`)))
             })
             .catch(error=>console.error(error))
-        },[refreshList]);
+        },[refreshList,isOpen]);
 
     //chiamata che raccoglie i preferiti di USER        
 
@@ -53,7 +54,7 @@ export default function (){
                 .filter(mus=>mus.favourite_by_user.includes(`${user._id}`)))
             })
             .catch(error=>console.error(error))
-        },[refreshList]);
+        },[refreshList,isOpen]);
 
 
     const deleteInserction=(id)=>{
@@ -89,53 +90,68 @@ export default function (){
                 
             }
            <div className="modal-wrapper">
-                <MusiciansForm 
+                <MusiciansForm
                     isOpen={isOpen}
-                    setIsOpen={c=>setIsOpen(c)}
+                    setIsOpen={c=>{setIsOpen(c)}}
+                    refresh={c=>(setRefreshList(!c))}
                 />
            </div>
-           <div>
-                {!favouritesArray ==! [] &&
-                    <section className="user-favourites">
-                        <h4>{user.user_name}'s' favourites:</h4>
-                            <ul >
-                                {favouritesArray.map((mus,i) =>{
-                                    return(
-                                        <li className="link" key={`${mus.user_name}${i}`}>
-                                            <Link to={`/musicians/${mus._id}`}>
-                                                ♦ {mus.title_inserction}-{mus.genre}
-                                            </Link>
-                                        </li>
-                                    )
-                                })}
-                            </ul>
+           <main className="main-user-section">
+                <div>
+                    {!favouritesArray ==! [] &&
+                        <section className="user-favourites">
+                            <h4>{user.user_name}'s' favourites:</h4>
+                           <ul  className="inserction-list">
+                        {favouritesArray.map((elem=>{
+                            return(
+                                    <li  key={`${elem._id}`}>
+                                        <Link className='single-ins' to={`/musicians/${elem._id}` }>
+                                            <figure className="thumbnail-owner">
+                                                <img src="https://source.unsplash.com/random/350x200?musician" alt="rndm img" />
+                                            </figure>
+                                            <div>
+                                                <h4>{`${elem.title_inserction}`}</h4>
+                                                <p>{`${elem.instrument.principal_instrument}`}</p>
+                                            </div>
+                                        </Link>
+                                    </li>
+                            )
+                        }))}
+                        </ul>
+                        </section>
+                        }
+                    </div>
+                <div>
+                    {user.role ==='musician' &&
+                    <section className="user-inserction">
+                        <h4>Those are your Inserctions:</h4>
+                        <ul  className="inserction-list">
+                        {filteredArray.map((elem=>{
+                            return(
+                                    <li  key={`${elem._id}`}>
+                                        <Link className='single-ins' to={`/musicians/${elem._id}` }>
+                                            <figure className="thumbnail-owner">
+                                                <img src="https://source.unsplash.com/random/350x200?musician" alt="rndm img" />
+                                            </figure>
+                                            <div>
+                                                <h4>{`${elem.title_inserction}`}</h4>
+                                                <p>{`${elem.instrument.principal_instrument}`}</p>
+                                                <button onClick={()=>{
+                                                    deleteInserction(elem._id)
+                                                    setRefreshList(!refreshList)
+                                                }}>
+                                                    delete
+                                                </button>
+                                            </div>
+                                        </Link>
+                                    </li>
+                            )
+                        }))}
+                        </ul>
                     </section>
-                
-                }
-            </div>
-           <div>
-            {user.role ==='musician' &&
-            <section className="user-inserction">
-                <h4>Those are your Inserctions:</h4>
-                {filteredArray.map((elem=>{
-                    return(
-                        <div key={`${elem._id}`}>
-                                <Link to={`/musicians/${elem._id}`}>
-                                    <h4>id inserction:{`${elem._id}`}</h4>
-                                    <p>{`${elem.instrument.principal_instrument}`}</p>
-                                </Link>
-                                <button onClick={()=>{
-                                    deleteInserction(elem._id)
-                                    setRefreshList(!refreshList)
-                                }}>
-                                    delete
-                                </button>
-                        </div>
-                    )
-                }))}
-            </section>
-            }
-           </div>
+                    }
+                </div>
+           </main>
         </>
     )
 }
