@@ -17,7 +17,7 @@ export default function (){
             <div className="navlinks">
                 <NavLink className='link' to='/'>
                     <figure className="logo">
-                        <img src="../logo.png" alt="" />
+                        <img src="/logo.png" alt="" />
                     </figure>
                 </NavLink>
                 <NavLink className='link' to='/Musicians'>Musicians</NavLink>
