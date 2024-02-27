@@ -32,11 +32,11 @@ export default function ({isOpen,setIsOpen}){
         .then(obj=>{setInstrumentsArray(obj.data)
             console.log(obj.data)})
         .catch(error=>console.error(error));
-    },[refresh])
+    },[])
 
 
     const [musicianForm,setMusicianForm]=useState({
-        user:user._id,
+        user:user?._id,
         instrument:'',
         title_inserction:'',
         genre:'',
@@ -78,7 +78,7 @@ export default function ({isOpen,setIsOpen}){
                 <form 
                     className='musician-form' 
                     action="">
-                        <h4>{user.user_name}</h4>
+                        <h4>{user?.user_name}</h4>
                         <select 
                             value={musicianForm.instrument._id}
                             onChange={e=>setMusicianForm(curr=>({...curr, instrument:e.target.value}))}>

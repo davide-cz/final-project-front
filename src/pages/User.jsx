@@ -44,7 +44,7 @@ export default function (){
                 .filter(mus=>mus.user?._id.includes(`${user?._id}`)))
             })
             .catch(error=>console.error(error))
-        },[refreshList,isOpen]);
+        },[refreshList]);
 
     //chiamata che raccoglie i preferiti di USER        
 

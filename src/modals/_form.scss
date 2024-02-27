@@ -1,11 +1,33 @@
+.sign-form , .login-form{
+    padding-left: .5rem;
+
+
+    & input{
+        padding: 0.25rem;
+        padding-left: 0.75rem;
+        border-radius:1.25rem;
+        border: 3px solid rgb(72, 70, 162);
+        background-color: rgb(203, 196, 203);
+        &:focus{
+            background-color: rgb(251, 234, 247);
+            border: 3px solid rgb(55, 55, 55);
+        }
+    }
+}
+
 .login-title{
-    padding-bottom: 1rem;
+    padding-bottom: 0.25rem;
 }
 .dialog-modal{
     background-color: rgb(229, 223, 223);
     width: 50vw;
     height: 80vw;
     top: 5vh;
+}
+.subtitle{
+    color: rgb(108, 108, 108);
+    font-size: 0.75rem;
+    font-weight: 600;
 }
 .form-name{
     padding: 0.25rem 0;
