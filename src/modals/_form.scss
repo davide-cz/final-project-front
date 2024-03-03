@@ -1,16 +1,41 @@
 .sign-form , .login-form{
     padding-left: .5rem;
+    display: grid;
+    justify-content: center;
 
 
     & input{
+        font-size: 0.875rem;
         padding: 0.25rem;
         padding-left: 0.75rem;
         border-radius:1.25rem;
         border: 3px solid rgb(72, 70, 162);
         background-color: rgb(203, 196, 203);
+        margin-bottom: 0.75rem;
+        margin-left: 0.5rem;
         &:focus{
             background-color: rgb(251, 234, 247);
             border: 3px solid rgb(55, 55, 55);
+        }
+    }
+}
+.toggle-button{
+    display: grid;
+    justify-content: center;
+    max-width: 100%;
+    &.toggle-button button{
+        border: 3px solid grey;
+        border-radius: 2rem;
+        align-self: center;
+        color:rgb(112, 112, 112) ;
+        background-color: rgb(255, 192, 55);
+        font-weight: 600;
+        
+        &:hover{
+            border: 3px solid rgb(27, 27, 27);
+            background-color: rgb(255, 148, 54);
+            color:rgb(32, 32, 32) ;
+            font-weight: 600;
         }
     }
 }
@@ -20,8 +45,8 @@
 }
 .dialog-modal{
     background-color: rgb(229, 223, 223);
-    width: 50vw;
-    height: 80vw;
+    width: 360px;
+    height: 550px;
     top: 5vh;
 }
 .subtitle{
@@ -34,32 +59,39 @@
 }
 
 dialog{
-    left: calc((100vw - 50vw)/2);
+    left: calc((100vw - 350px)/2);
     top: calc((100vh - 80vw)/2);
     padding: .5rem;
     border-radius: 1rem;
   }
 
+@media(max-width:960px){
+    .dialog-modal{
+        height: 550px;
+        top: 5vh;
+    }
+}
+
 @media (max-width:640px){
     dialog{
-        left: calc((100vw - 80vw)/2);
+        left: calc((100vw - 360px)/2);
         top: calc((100vh - 90vh)/2);
       }
       .dialog-modal{
-          width: 80vw;
-          height: 90vw;
+          width: 360px;
+          height: 550px;
           top: 5vh;
       }
 }
 
 @media (max-width:480px){
     dialog{
-        left: calc((100vw - 90vw)/2);
+        left: calc((100vw - 360px)/2);
         top: calc((100vh - 90vw)/2);
       }
       .dialog-modal{
-          width: 90vw;
-          height: 90vw;
+          width: 360px;
+          height: 550px;
           top: 5vh;
       }
 }

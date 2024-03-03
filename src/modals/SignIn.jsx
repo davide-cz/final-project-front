@@ -78,18 +78,19 @@ export default function ({isOpen,setIsOpen}){
                             <button onClick={()=>{
                             }}>submit</button>
                         </form>
-                        
-                        <button onClick={()=>[
-                            setSignInLayout(false)
-                        ]}>
-                            Already Signed?
-                        </button>
+                        <div className="toggle-button">
+                            <button onClick={()=>[
+                                setSignInLayout(false)
+                            ]}>
+                                Already Signed?
+                            </button>
+                        </div>
                     </div>
                     }
                     {!signInLayout &&
                     <div className="login-form">
-                    <h2 className="login-title">LogIn</h2>
-                    <form onSubmit={logUser}>
+                        <h2 className="login-title">LogIn</h2>
+                        <form onSubmit={logUser}>
                             <label htmlFor="">
                                 <p className='form-name'>Email:</p>
                                 <input 
@@ -108,15 +109,17 @@ export default function ({isOpen,setIsOpen}){
                             <button onClick={()=>{
                             }}>submit</button>
                         </form>
+                        <div className="toggle-button">
                             <button onClick={()=>[
                                 setSignInLayout(true)
                                 ]}>
                                     Not subscribed?
-                        </button>
+                            </button>
+                        </div>
                     </div>
-                 }
+                    }
                 </div>
-                {error && <div className="error">{error}</div>}
+                    {error && <div className="error">{error}</div>}
             </dialog>
         </>
     )
