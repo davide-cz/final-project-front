@@ -91,11 +91,11 @@ export default function ({isOpen,setIsOpen,refresh}){
                                 )
                             }))}
                         </select>
-                        <p>genre</p>
+                        <p>Instrument</p>
                         <input 
                             type="text"value={musicianForm.title_inserction}
                             onChange={e=>setMusicianForm(curr=>({...curr, title_inserction:e.target.value}))} />
-                        <p>title</p>
+                        <p>Genre</p>
                         <input 
                             type="text"value={musicianForm.genre}
                             onChange={e=>setMusicianForm(curr=>({...curr, genre:e.target.value}))} />
@@ -105,7 +105,6 @@ export default function ({isOpen,setIsOpen,refresh}){
                             onChange={e=>setMusicianForm(curr=>({...curr, pricing:e.target.value}))} />
                         <p>description</p>
                         <input
-                            type="text"
                             onChange={e=>setMusicianForm(curr=>({...curr, description:e.target.value}))} />
                 </form>
                 <button onClick={()=>{

@@ -54,7 +54,7 @@ export default function ({isOpen,setIsOpen}){
         const body = {};
         Object.entries(musicianForm).forEach(([key, value]) => {
             
-            if(value!=''){
+            if(value){
                 body[key] = value;
             }
         })
@@ -79,7 +79,7 @@ export default function ({isOpen,setIsOpen}){
                 <form 
                     className='musician-form' 
                     action="">
-                        <h4>{user?.user_name}</h4>
+                        <h4>{user.user_name}</h4>
                         <select 
                             value={musicianForm.instrument._id}
                             onChange={e=>setMusicianForm(curr=>({...curr, instrument:e.target.value}))}>
@@ -92,11 +92,11 @@ export default function ({isOpen,setIsOpen}){
                                 )
                             }))}
                         </select>
-                        <p>genre</p>
+                        <p>Instrument</p>
                         <input 
                             type="text"value={musicianForm.title_inserction}
                             onChange={e=>setMusicianForm(curr=>({...curr, title_inserction:e.target.value}))} />
-                        <p>title</p>
+                        <p>Genre</p>
                         <input 
                             type="text"value={musicianForm.genre}
                             onChange={e=>setMusicianForm(curr=>({...curr, genre:e.target.value}))} />
