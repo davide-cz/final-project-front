@@ -53,6 +53,7 @@ export default function ({isOpen,setIsOpen}){
     const editInserction=()=>{
         const body = {};
         Object.entries(musicianForm).forEach(([key, value]) => {
+            
             if(value){
                 body[key] = value;
             }
