@@ -103,9 +103,9 @@ const removeFavourites = async () =>{
                             <h4>
                                 {musician.user?.user_name} 
                             </h4>
-                            <h3>
+                            <h4>
                                 {musician.genre}     
-                            </h3>
+                            </h4>
                             {user.role==='admin' && 
                             //button per delete by ADMIN
                                 <button 

@@ -54,7 +54,7 @@ export default function ({isOpen,setIsOpen}){
         const body = {};
         Object.entries(musicianForm).forEach(([key, value]) => {
             
-            if(value){
+            if(value!=''){
                 body[key] = value;
             }
         })
