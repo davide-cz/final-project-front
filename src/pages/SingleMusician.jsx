@@ -121,7 +121,7 @@ const removeFavourites = async () =>{
                     </div>
                     <div>
                         <h3>
-                            {musician.title}     
+                            {musician.title_inserction}     
                         </h3>
                         <h6> About me:</h6>
                         <p className="mus-description">

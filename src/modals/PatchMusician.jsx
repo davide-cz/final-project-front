@@ -80,6 +80,7 @@ export default function ({isOpen,setIsOpen}){
                     className='musician-form' 
                     action="">
                         <h4>{user.user_name}</h4>
+                        <p>Instrument</p>
                         <select 
                             value={musicianForm.instrument._id}
                             onChange={e=>setMusicianForm(curr=>({...curr, instrument:e.target.value}))}>
@@ -92,7 +93,7 @@ export default function ({isOpen,setIsOpen}){
                                 )
                             }))}
                         </select>
-                        <p>Instrument</p>
+                        <p>Title Inserction</p>
                         <input 
                             type="text"value={musicianForm.title_inserction}
                             onChange={e=>setMusicianForm(curr=>({...curr, title_inserction:e.target.value}))} />
