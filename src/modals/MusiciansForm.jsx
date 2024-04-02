@@ -110,7 +110,7 @@ export default function ({isOpen,setIsOpen,refresh}){
                 </form>
                 <button onClick={()=>{
                     addMusician(musicianForm)
-                    setIsOpen(false)
+                    setIsOpen(error ? true : false)
                     refresh(false)
                 }}>Sign</button>
                 

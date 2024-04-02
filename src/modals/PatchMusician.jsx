@@ -110,7 +110,7 @@ export default function ({isOpen,setIsOpen}){
                 <button disabled={error}
                     onClick={()=>{
                     editInserction()
-                    setIsOpen(false)
+                    setIsOpen(error ? true : false)
                     setRefresh(!refresh)
                 }}>edit</button>
             </dialog>
