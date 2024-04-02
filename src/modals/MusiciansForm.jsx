@@ -104,10 +104,7 @@ export default function ({isOpen,setIsOpen,refresh}){
                             type="number"value={musicianForm.pricing}
                             onChange={e=>setMusicianForm(curr=>({...curr, pricing:e.target.value}))} />
                         <p>description</p>
-                        <textarea 
-                            rows="7" 
-                            cols="30" 
-                            wrap="soft" 
+                        <input
                             type="text"
                             onChange={e=>setMusicianForm(curr=>({...curr, description:e.target.value}))} />
                 </form>
@@ -118,6 +115,7 @@ export default function ({isOpen,setIsOpen,refresh}){
                 }}>Sign</button>
                 
             </dialog>
+            {error && <div className="error">{error}</div>}
         </>
     )
 }

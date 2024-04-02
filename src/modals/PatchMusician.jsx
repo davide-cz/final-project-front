@@ -11,7 +11,7 @@ export default function ({isOpen,setIsOpen}){
     
     const {VITE_URI} = import.meta.env;
     
-    const {user , token} = useUser();
+    const {user , token , error} = useUser();
 
     const [instrumentsArray,setInstrumentsArray]=useState([]);
     const [refresh,setRefresh]=useState(false);
@@ -104,19 +104,17 @@ export default function ({isOpen,setIsOpen}){
                             type="number"value={musicianForm.pricing}
                             onChange={e=>setMusicianForm(curr=>({...curr, pricing:e.target.value}))} />
                         <p>description</p>
-                        <textarea
-                            rows="7" 
-                            cols="30" 
-                            wrap="soft" 
-                            type="text"
+                        <input
                             onChange={e=>setMusicianForm(curr=>({...curr, description:e.target.value}))} />
                 </form>
-                <button onClick={()=>{
+                <button disabled={error}
+                    onClick={()=>{
                     editInserction()
                     setIsOpen(false)
                     setRefresh(!refresh)
                 }}>edit</button>
             </dialog>
+            {error && <div className="error">{error}</div>}
         </>
     )
 }
