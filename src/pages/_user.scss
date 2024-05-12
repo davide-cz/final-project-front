@@ -24,6 +24,8 @@
         }
     }
     & .user-inserction{
+
+        padding:0.5rem 1rem;
         
         &>h4{
             padding: 0.25rem 0 1rem;
@@ -42,7 +44,7 @@
         display: grid;
 
         border-radius: 1.25rem;
-        height: 150px;
+        height: 100px;
         width: 180px;
         border:  1px solid rgb(112, 112, 112);
         

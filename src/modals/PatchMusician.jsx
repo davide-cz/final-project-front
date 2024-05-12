@@ -29,8 +29,7 @@ export default function ({isOpen,setIsOpen}){
     },[isOpen])
 
     useEffect(()=>{axios.get(`${VITE_URI}/instruments`)
-        .then(obj=>{setInstrumentsArray(obj.data)
-            console.log(obj.data)})
+        .then(obj=>{setInstrumentsArray(obj.data)})
         .catch(error=>console.error(error));
     },[])
 
@@ -45,8 +44,7 @@ export default function ({isOpen,setIsOpen}){
     });
 
     useEffect(()=>{axios.get(`${VITE_URI}/musicians/${id} ` ,  axiosOpts(token))
-        .then(obj=>{setMusicianForm(obj.data)
-            console.log(obj.data)})
+        .then(obj=>{setMusicianForm(obj.data)})
         .catch(error=>console.error(error));
     },[])
 
@@ -82,7 +80,7 @@ export default function ({isOpen,setIsOpen}){
                         <h4>{user?.user_name}</h4>
                         <p>Instrument</p>
                         <select 
-                            value={musicianForm.instrument._id}
+                            value={musicianForm.instrument?._id}
                             onChange={e=>setMusicianForm(curr=>({...curr, instrument:e.target.value}))}>
                             select an instrument
                             {instrumentsArray.map(((instr , i)=>{

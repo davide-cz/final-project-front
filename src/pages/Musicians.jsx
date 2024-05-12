@@ -24,7 +24,6 @@ export default function (){
     useEffect(()=>{
         axios.get(`${VITE_URI}/musicians`, axiosOpts(token))
         .then(res=>{setMusiciansArray(res.data)
-            console.log(res.data)
             setFilteredArray(res.data
                 .filter(mus=>mus.title_inserction?.toLowerCase().includes(`${searchValue}`)))
         })
@@ -41,8 +40,8 @@ export default function (){
     //funzione che filtra i risultati per instrument
     const filterByInstrument=(inst)=>{
         setFilteredArray(musiciansArray
-            .filter(mus=>mus.instrument.principal_instrument
-                .includes(`${inst.principal_instrument}`)))
+            .filter(mus=>mus.instrument?.principal_instrument
+                .includes(`${inst?.principal_instrument}`)))
 
     }
 
@@ -67,7 +66,7 @@ export default function (){
                 //filtro i musicisti con i buttons che indicano lo strumento
                 return(
                     <button className="filter-button"
-                            key={`${inst.principal_instrument}`}
+                            key={`${inst.principal_instrument} ${i} `}
                             onClick={()=>{
                                 filterByInstrument(inst)}}
                             >
