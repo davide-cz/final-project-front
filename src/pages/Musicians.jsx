@@ -63,11 +63,11 @@ export default function (){
             </div>
             <h4 className="musicians-title">select a filter for a more specific research:</h4>
             <div className="instrument-filter-buttons">
-            {instrumentsArray.map((inst=>{
+            {instrumentsArray.map(((inst,i)=>{
                 //filtro i musicisti con i buttons che indicano lo strumento
                 return(
                     <button className="filter-button"
-                            key={`${inst.principal_instrument} ${inst.role}`}
+                            key={`${inst.principal_instrument}-${inst.role}${i}`}
                             onClick={()=>{
                                 filterByInstrument(inst)}}
                             >

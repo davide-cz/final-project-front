@@ -79,7 +79,7 @@ export default function ({isOpen,setIsOpen}){
                 <form 
                     className='musician-form' 
                     action="">
-                        <h4>{user.user_name}</h4>
+                        <h4>{user?.user_name}</h4>
                         <p>Instrument</p>
                         <select 
                             value={musicianForm.instrument._id}
