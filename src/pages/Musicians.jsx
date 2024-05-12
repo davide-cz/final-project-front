@@ -67,7 +67,7 @@ export default function (){
                 //filtro i musicisti con i buttons che indicano lo strumento
                 return(
                     <button className="filter-button"
-                            key={`${inst.principal_instrument}-${inst.role}${i}`}
+                            key={`${inst.principal_instrument}`}
                             onClick={()=>{
                                 filterByInstrument(inst)}}
                             >
@@ -96,7 +96,7 @@ export default function (){
                             key={mus._id}
                             id={mus._id}
                             name={mus.user?.user_name}
-                            instrument={mus.instrument.principal_instrument}
+                            instrument={mus.instrument?.principal_instrument}
                             genre={mus.genre}
                             pricing={mus.pricing}
                         />
